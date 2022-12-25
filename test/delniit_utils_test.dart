@@ -1,5 +1,6 @@
-import 'package:delniit_utils/delniit_utils.dart';
 import 'package:test/test.dart';
+
+import 'package:delniit_utils/delniit_utils.dart';
 
 void main() {
   group('A group of tests', () {

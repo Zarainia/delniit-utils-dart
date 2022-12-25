@@ -66,23 +66,23 @@ const Map<String, String> DELNIIT_ACCENT_REMOVAL = {
   'Í': 'I',
   'Ì': 'I',
   'Î': 'I',
-  'í': 'i',
-  'ì': 'i',
-  'î': 'i',
+  'í': 'ı',
+  'ì': 'ı',
+  'î': 'ı',
   'Ӂ': 'ж',
   'ӂ': 'ж',
 };
 
 String delniit_lower(String string) {
-  return DELNIIT_SPLIT_STRING.allMatches(string).map((match) => DELNIIT_UPPER_TO_LOWER[match[0] ?? ''] ?? match[0] ?? '').join('');
+  return delniit_split(string).map((char) => DELNIIT_UPPER_TO_LOWER[char] ?? char).join('');
 }
 
 String delniit_upper(String string) {
-  return DELNIIT_SPLIT_STRING.allMatches(string).map((match) => DELNIIT_LOWER_TO_UPPER[match[0] ?? ''] ?? match[0] ?? '').join('');
+  return delniit_split(string).map((char) => DELNIIT_LOWER_TO_UPPER[char] ?? char).join('');
 }
 
 String delniit_remove_accents(String string) {
-  return DELNIIT_SPLIT_STRING.allMatches(string).map((match) => DELNIIT_ACCENT_REMOVAL[match[0] ?? ''] ?? match[0] ?? '').join('');
+  return delniit_split(string).map((char) => DELNIIT_ACCENT_REMOVAL[char] ?? char).join('');
 }
 
 List<String> delniit_split(String string) {
@@ -90,8 +90,8 @@ List<String> delniit_split(String string) {
 }
 
 int delniit_compare(String a, String b) {
-  List<String> a1 = DELNIIT_SPLIT_STRING.allMatches(a).map((e) => e[0]!).toList();
-  List<String> b1 = DELNIIT_SPLIT_STRING.allMatches(b).map((e) => e[0]!).toList();
+  List<String> a1 = delniit_split(a);
+  List<String> b1 = delniit_split(b);
   for (int i = 0; i < max(a1.length, b1.length); i++) {
     if (i >= a1.length)
       return ''.compareTo(b1.sublist(i).join(''));
